@@ -20,7 +20,7 @@ export default function Home() {
         </p>
 
         <div className={styles.description}>
-          <Button href='https://github.com/dciesielkiewicz' target='_blank' variant="contained">See more on Github</Button>
+          <Button href='https://github.com/dciesielkiewicz' target='_blank' variant="contained">See more from dciesielkiewicz on Github</Button>
         </div>
 
         <div className={styles.grid}>

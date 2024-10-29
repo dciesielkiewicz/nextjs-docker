@@ -1,12 +1,8 @@
-name: Build and Publish Base Docker Image
+name: Build and Push Docker Image
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - "package-lock.json" # Only run when package-lock.json changes
-  workflow_dispatch: # Allows manual triggering from the Actions tab
+  push:  # Trigger on push to any branch
+  workflow_dispatch:  # Allow manual triggering as well
 
 permissions:
   packages: write  # Grant write permissions to packages
@@ -34,10 +30,13 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       # Step 4: Build and push the Docker image
-      - name: Build and push base Docker image
+      - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: Dockerfile.base
+          file: Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository }}/nextjs-docker-base:latest
+          tags: ghcr.io/${{ github.repository }}/nextjs-docker:latest
+          build-args: |
+            USERNAME=${{ github.actor }}
+            REPOSITORY=${{ github.event.repository.name }}

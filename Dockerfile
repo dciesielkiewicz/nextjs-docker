@@ -1,4 +1,8 @@
-FROM nextjs-docker-base
+# Use the previously built base image
+ARG USERNAME
+ARG REPOSITORY
+
+FROM ghcr.io/${USERNAME}/${REPOSITORY}/nextjs-docker-base:latest
 
 COPY . .
 
