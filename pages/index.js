@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { Button } from '@mui/material';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
@@ -17,6 +18,10 @@ export default function Home() {
         <p className={styles.description}>
           Get started by editing <code>pages/index.js</code>
         </p>
+
+        <div className={styles.description}>
+          <Button href='https://github.com/dciesielkiewicz' target='_blank' variant="contained">See more on Github</Button>
+        </div>
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
