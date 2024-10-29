@@ -4,6 +4,10 @@ ARG REPOSITORY
 
 FROM ghcr.io/${USERNAME}/${REPOSITORY}/nextjs-docker-base:latest
 
+COPY package.json ./
+
+RUN npm i
+
 COPY . .
 
 RUN npm run build
