@@ -1,0 +1,28 @@
+trigger:
+  branches:
+    include:
+    - '*'
+
+variables:
+  acrName: 'dciesielkiewicznextjsdocker'
+  imageName: 'nextjs-docker'
+  baseImageName: 'nextjs-docker-base'
+  vmImageName: 'ubuntu-latest'
+
+pool:
+  vmImage: $(vmImageName)
+
+steps:
+- task: Docker@2
+  displayName: 'Build and push application image'
+  inputs:
+    command: buildAndPush
+    containerRegistry: 'nextjs-docker-acr-service-connection'
+    repository: $(imageName)
+    dockerfile: 'Dockerfile.azure'
+    buildContext: '.'
+    tags: |
+      latest
+    arguments: |
+      --build-arg ACR_NAME=$(acrName)
+      --build-arg BASE_IMAGE_NAME=$(baseImageName)

@@ -1,0 +1,19 @@
+ARG ACR_NAME
+ARG BASE_IMAGE_NAME
+
+FROM ${ACR_NAME}.azurecr.io/${BASE_IMAGE_NAME}:latest
+
+COPY package.json ./
+COPY package-lock.json ./
+
+RUN npm i
+
+COPY . .
+
+RUN npm run build
+
+ENV NODE_ENV production
+
+EXPOSE 3000
+
+CMD npm run start

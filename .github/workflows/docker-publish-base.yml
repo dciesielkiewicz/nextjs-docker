@@ -38,6 +38,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: Dockerfile.base
+          file: Dockerfile.github.base
           push: true
           tags: ghcr.io/${{ github.repository }}/nextjs-docker-base:latest

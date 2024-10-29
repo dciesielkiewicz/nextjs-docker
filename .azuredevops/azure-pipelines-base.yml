@@ -1,0 +1,26 @@
+trigger:
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - "package-lock.json"
+
+variables:
+  acrName: 'dciesielkiewicznextjsdocker'
+  baseImageName: 'nextjs-docker-base'
+  vmImageName: 'ubuntu-latest'
+
+pool:
+  vmImage: $(vmImageName)
+
+steps:
+- task: Docker@2
+  displayName: 'Build and push base image'
+  inputs:
+    command: buildAndPush
+    containerRegistry: 'nextjs-docker-acr-service-connection'
+    repository: $(baseImageName)
+    dockerfile: 'Dockerfile.azure.base'
+    tags: |
+      latest
