@@ -5,6 +5,7 @@ ARG REPOSITORY
 FROM ghcr.io/${USERNAME}/${REPOSITORY}/nextjs-docker-base:latest
 
 COPY package.json ./
+COPY package-lock.json ./
 
 RUN npm i
 
